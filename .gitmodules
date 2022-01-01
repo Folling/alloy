@@ -1,0 +1,18 @@
+[submodule "catalyst"]
+	path = catalyst
+	url = git@github.com:Folling/catalyst.git
+[submodule "granite"]
+	path = granite
+	url = git@github.com:Folling/granite.git
+[submodule "graphene"]
+	path = graphene
+	url = git@github.com:Folling/graphene.git
+[submodule "graphite"]
+	path = graphite
+	url = git@github.com:Folling/graphite.git
+[submodule "ink"]
+	path = ink
+	url = git@github.com:Folling/ink.git
+[submodule "neon"]
+	path = neon
+	url = git@github.com:Folling/neon.git
