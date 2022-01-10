@@ -10,16 +10,16 @@ It is made up of 6 different libraries:
 - ink – Text & Font handling
 - neon – 2D rendering
 
-Together these form the perfect foundation one might need to programm their dream user-facing software.
+Together these form a sophisticated foundation one might need to program their dream user-facing software.
 
 # Why
 Why indeed. I tried working with plenty of GUI libraries and frameworks in the past to create my own passion project 
-and was left unsatisfied on all fronts.
+and was left unsatisfied on a lot of fronts.
 Plenty of backwards compatibility related problems. A plethora of design decisions that simply do not make sense.
-And worst of all: A lot of private interfaces that you cannot configure, etc.
+And worst of all: A lot of private interfaces that you cannot configure.
 
 And so graphite – a custom GUI framework was born and I was surprised just how well it worked.
-graphite used to be the umbrella term for what is now alloy. In the current iteration graphite only describes the GUI capabilities.
+graphite used to be the umbrella term for what is now alloy. In the current iteration graphite solely describes the GUI capabilities.
 
 It has existed in multiple forms before. Two C++ versions and one previous rust version. 
 You can find these projects (in ascending order of the creation date):
@@ -41,4 +41,4 @@ All code should be formatted using the same guideline. For this please use rustf
 File and directory names are are to be formatted using snake_case. Excluded from this rule are files that have a certain convention such as .gitignore, LICENCE.txt and markdown files.
 
 # Support
-I have a fulltime job and can only afford so much time for alloy (the root project of graphite). If you would like to change that in the future consider donating to the project (note: Donating link will follow, graphite isn't worth donating yet). I also appreciate feedback (next to constructive criticism) so feel free to email me at coding@folling.de. 
+I have a fulltime job and can only afford so much time for alloy. If you would like to change that in the future consider donating to the project (note: Donating link will follow, alloy isn't worth donating yet). I also appreciate feedback (next to constructive criticism) so feel free to email me at coding@folling.de. 
