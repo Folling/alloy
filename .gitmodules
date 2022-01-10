@@ -16,3 +16,6 @@
 [submodule "neon"]
 	path = neon
 	url = git@github.com:Folling/neon.git
+[submodule "adhesive"]
+	path = adhesive
+	url = git@github.com:Folling/adhesive.git
