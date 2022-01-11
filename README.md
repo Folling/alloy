@@ -2,13 +2,13 @@
 alloy is a collection of libraries necessary to create modern, flexible, and stylish applications.
 
 It is made up of 6 different libraries:
-- adhesive – Interaction with the underlying OS
-- catalyst – Provision of utilities
-- granite – Data persistence
-- graphene – Abstraction of various rendering libraries
-- graphite – GUI capabilities
-- ink – Text & Font handling
-- neon – 2D rendering
+- [adhesive](https://github.com/Folling/adhesive) – Interaction with the underlying OS
+- [catalyst](https://github.com/Folling/catalyst) – Provision of utilities
+- [granite](https://github.com/Folling/granite) – Data persistence
+- [graphene](https://github.com/Folling/graphene) – Abstraction of various rendering libraries
+- [graphite](https://github.com/Folling/graphite) – GUI capabilities
+- [ink](https://github.com/Folling/ink) – Text & Font handling
+- [neon](https://github.com/Folling/neon) – 2D rendering
 
 Together these form a sophisticated foundation one might need to program their dream user-facing software.
 
@@ -32,6 +32,36 @@ You should look at my blog (link will follow soon) or the separate repositories 
 
 # When
 There is no fixed timeline for alloy. I have a fulltime job and will work on this at my own pace
+
+# Focus
+I attempt to use as few dependencies as possible. There are however a few crates that I consider trivial and will not 
+count toward this ideal. 
+The reasoning here is that they are included in a LOT of projects and are very mature and secure. If any of them fail or are compromised
+we'd have a much bigger problem than just alloy.
+These are currently:
+- [bitflags](https://crates.io/crates/bitflags)
+- [byteorder](https://crates.io/crates/byteorder)
+- [chrono](https://crates.io/crates/chrono)
+- [lazy_static](https://crates.io/crates/lazy_static)
+- [libc](https://crates.io/crates/libc)
+- [log](https://crates.io/crates/log)
+- [num-traits and all related crates](https://crates.io/crates/num-traits)
+- [proc-macro2](https://crates.io/crates/proc-macro2)
+- [quote](https://crates.io/crates/quote)
+- [rand](https://crates.io/crates/rand)
+- [regex](https://crates.io/crates/regex)
+- [serde](https://crates.io/crates/serde)
+- [syn](https://crates.io/crates/syn)
+- [time](https://crates.io/crates/time)
+
+Additionally there are a few crates which I consider vital to development with rust and will justify here once instead of
+repeating the justification in every subproject:
+- [bindgen](https://crates.io/crates/bindgen) | Necessary for useful interaction with underlying C APIs, such as the winapi, Xlib, or OpenGL
+- [itertools](https://crates.io/crates/itertools) | Provides a lot of helpers that make writing certain code a lot cleaner and easier, although it could be considered to write a selfmade version as part of [catalyst](https://github.com/Folling/catalyst)
+- [thiserror](https://crates.io/crates/thiserror) | An incredible library that makes error handling in rust what it should be.
+- [strum](https://crates.io/crates/strum) | Wonderful and lightweight helpers to make working with enums a lot easier
+
+All other dependencies will have a written justification in their respective project.
 
 # Contributing
 alloy is open source and is supposed to benefit from the inclusion of other people. 
