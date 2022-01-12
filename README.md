@@ -1,4 +1,4 @@
-# What
+# Summary
 alloy is a collection of libraries necessary to create modern, flexible, and stylish applications.
 
 It is made up of 6 different libraries:
@@ -12,8 +12,13 @@ It is made up of 6 different libraries:
 
 Together these form a sophisticated foundation one might need to program their dream user-facing software.
 
-# Why
-Why indeed. I tried working with plenty of GUI libraries and frameworks in the past to create my own passion project 
+# Development
+If you want to build/contribute to alloy, please note that a few requirements must be met:
+1. You must be using a unix-based system. If you are developing on windows, please use the WSL.
+2. pkgconf (note, not pkg-config) must be installed on the system.
+
+# Motivation
+I tried working with plenty of GUI libraries and frameworks in the past to create my own passion project 
 and was left unsatisfied on a lot of fronts.
 Plenty of backwards compatibility related problems. A plethora of design decisions that simply do not make sense.
 And worst of all: A lot of private interfaces that you cannot configure.
@@ -37,7 +42,7 @@ There is no fixed timeline for alloy. I have a fulltime job and will work on thi
 I attempt to use as few dependencies as possible. There are however a few crates that I consider trivial and will not 
 count toward this ideal. 
 The reasoning here is that they are included in a LOT of projects and are very mature and secure. If any of them fail or are compromised
-we'd have a much bigger problem than just alloy.
+I'd have a much bigger problem than just alloy.
 These are currently:
 - [bitflags](https://crates.io/crates/bitflags)
 - [byteorder](https://crates.io/crates/byteorder)
@@ -63,6 +68,12 @@ repeating the justification in every subproject:
 
 All other dependencies will have a written justification in their respective project.
 
+One thing I found bothersome when working with other APIs were private APIs.
+Private APIs can be useful to avoid users accidentally messing something up, or forming a dependency on a volatile part of your API.
+But not even having the option to access these parts makes certain aspects far too rigid.
+For example, the tooltip delay was not changeable in previous JavaFX versions. The field existed, but you simply couldn't access it.
+For this reason, the APIs within alloy will follow a system similar to "pimpl". Every struct has an "inner" field with all fields that are supposed to be private and an unsafe getter function to access it. This forces people to opt-in with the concious decision and understanding that what they are doing is inherently prone to break if the API changes in the future.
+
 # Contributing
 alloy is open source and is supposed to benefit from the inclusion of other people. 
 However I do reserve the rights to deny any feature requests or pull requests but am always open to discussion and having my mind changed. 
@@ -72,3 +83,8 @@ File and directory names are are to be formatted using snake_case. Excluded from
 
 # Support
 I have a fulltime job and can only afford so much time for alloy. If you would like to change that in the future consider donating to the project (note: Donating link will follow, alloy isn't worth donating yet). I also appreciate feedback (next to constructive criticism) so feel free to email me at coding@folling.de. 
+
+# Naming
+An alloy is an admixture of metals, or a metal combined with one or more other elements. 
+- Wikipedia
+I chose chemistry/geology related terms for the sub-libraries, so alloy is a combination of the many elements.
