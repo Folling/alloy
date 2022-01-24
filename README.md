@@ -68,8 +68,8 @@ repeating the justification in every subproject:
 
 All other dependencies will have a written justification in their respective project.
 
-One thing I found bothersome when working with other APIs were private APIs.
-Private APIs can be useful to avoid users accidentally messing something up, or forming a dependency on a volatile part of your API.
+One thing I found bothersome when working with with other libraries were private APIs.
+Private APIs can be useful to avoid users accidentally messing something up, or forming a dependency on a volatile part.
 But not even having the option to access these parts makes certain aspects far too rigid.
 For example, the tooltip delay was not changeable in previous JavaFX versions. The field existed, but you simply couldn't access it.
 For this reason, the APIs within alloy will follow a system similar to "pimpl". Every struct has an "inner" field with all fields that are supposed to be private and an unsafe getter function to access it. This forces people to opt-in with the concious decision and understanding that what they are doing is inherently prone to break if the API changes in the future.
@@ -86,5 +86,4 @@ I have a fulltime job and can only afford so much time for alloy. If you would l
 
 # Naming
 An alloy is an admixture of metals, or a metal combined with one or more other elements. 
-- Wikipedia
 I chose chemistry/geology related terms for the sub-libraries, so alloy is a combination of the many elements.
