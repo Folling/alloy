@@ -61,16 +61,20 @@ These are currently:
 
 Additionally there are a few crates which I consider vital to development with rust and will justify here once instead of
 repeating the justification in every subproject:
-- [bindgen](https://crates.io/crates/bindgen) | Necessary for useful interaction with underlying C APIs, such as the winapi, Xlib, or OpenGL
-- [itertools](https://crates.io/crates/itertools) | Provides a lot of helpers that make writing certain code a lot cleaner and easier, although it could be considered to write a selfmade version as part of [catalyst](https://github.com/Folling/catalyst)
-- [thiserror](https://crates.io/crates/thiserror) | An incredible library that makes error handling in rust what it should be.
-- [strum](https://crates.io/crates/strum) | Wonderful and lightweight helpers to make working with enums a lot easier
+- [bindgen](https://crates.io/crates/bindgen)
+  <p style="margin: 0">Necessary for useful interaction with underlying C APIs, such as the winapi, Xlib, or OpenGL</p>
+- [itertools](https://crates.io/crates/itertools) 
+  <p style="margin: 0">Provides a lot of helpers that make writing certain code a lot cleaner and easier, although it could be considered to write a selfmade version as part of <a href="https://github.com/Folling/catalyst">catalyst</a></p>
+- [thiserror](https://crates.io/crates/thiserror) 
+  <p style="margin: 0">An incredible library that makes error handling in rust what it should be</p>
+- [strum](https://crates.io/crates/strum)
+  <p style="margin: 0">Wonderful and lightweight helpers to make working with enums a lot easier</p>
 
 All other dependencies will have a written justification in their respective project.
 
-One thing I found bothersome when working with with other libraries were private APIs.
-Private APIs can be useful to avoid users accidentally messing something up, or forming a dependency on a volatile part.
-But not even having the option to access these parts makes certain aspects far too rigid.
+One thing I found bothersome when working with with other libraries were private sections of the API.
+Whilst private APIs can be useful to avoid users accidentally messing up or forming a dependency on a volatile part not having the option to access
+them enforces a certain rigidity that can be hard to work with if you ever need to circumnavigate assumptions of the authors.
 For example, the tooltip delay was not changeable in previous JavaFX versions. The field existed, but you simply couldn't access it.
 For this reason, the APIs within alloy will follow a system similar to "pimpl". Every struct has an "inner" field with all fields that are supposed to be private and an unsafe getter function to access it. This forces people to opt-in with the concious decision and understanding that what they are doing is inherently prone to break if the API changes in the future.
 
