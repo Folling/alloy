@@ -2,15 +2,17 @@
 alloy is a collection of libraries necessary to create modern, flexible, and stylish applications.
 
 It is made up of 6 different libraries:
-- [adhesive](https://github.com/Folling/adhesive) – Interaction with the underlying OS
-- [catalyst](https://github.com/Folling/catalyst) – Provision of utilities
-- [granite](https://github.com/Folling/granite) – Data persistence
-- [graphene](https://github.com/Folling/graphene) – Abstraction of various rendering libraries
-- [graphite](https://github.com/Folling/graphite) – GUI capabilities
-- [ink](https://github.com/Folling/ink) – Text & Font handling
-- [neon](https://github.com/Folling/neon) – 2D rendering
+| Name            | Link                                  | Description                                    |
+|-----------------|---------------------------------------|------------------------------------------------|
+| adhesive        | https://github.com/Folling/adhesive   | Interaction with the underlying OS             |
+| catalyst        | https://github.com/Folling/catalyst   | Provision of utilities                         |
+| granite         | https://github.com/Folling/granite    | Data persistence                               |
+| graphene        | https://github.com/Folling/graphene   | Abstraction of various rendering libraries     |
+| graphite        | https://github.com/Folling/graphite   | GUI capabilities                               |
+| ink             | https://github.com/Folling/ink        | Text & Font handling                           |
+| neon            | https://github.com/Folling/neon       | 2D rendering                                   |
 
-Together these form a sophisticated foundation one might need to program their dream user-facing software.
+Together these form a sophisticated foundation for all your application development needs.
 
 # Development
 If you want to build/contribute to alloy, please note that a few requirements must be met:
@@ -36,57 +38,70 @@ You can find these projects (in ascending order of the creation date):
 You should look at my blog (link will follow soon) or the separate repositories and their subdirectories for further information.
 
 # When
-There is no fixed timeline for alloy. I have a fulltime job and will work on this at my own pace
+There is no fixed timeline for alloy. I have a fulltime job and will work on this at my own pace.
 
 # Focus
-I attempt to use as few dependencies as possible. There are however a few crates that I consider trivial and will not 
-count toward this ideal. 
-The reasoning here is that they are included in a LOT of projects and are very mature and secure. If any of them fail or are compromised
-I'd have a much bigger problem than just alloy.
-These are currently:
-- [bitflags](https://crates.io/crates/bitflags)
-- [byteorder](https://crates.io/crates/byteorder)
-- [chrono](https://crates.io/crates/chrono)
-- [lazy_static](https://crates.io/crates/lazy_static)
-- [libc](https://crates.io/crates/libc)
-- [log](https://crates.io/crates/log)
-- [num-traits and all related crates](https://crates.io/crates/num-traits)
-- [proc-macro2](https://crates.io/crates/proc-macro2)
-- [quote](https://crates.io/crates/quote)
-- [rand](https://crates.io/crates/rand)
-- [regex](https://crates.io/crates/regex)
-- [serde](https://crates.io/crates/serde)
-- [syn](https://crates.io/crates/syn)
-- [time](https://crates.io/crates/time)
+I attempt to use as few dependencies as possible. 
+The reasons for this decision are plentiful and go beyond the scope of this README.
+Here is an overview of the types of dependencies I will permit, all of these will use the system native C library:
+1. Systems libraries
+2. Security Related Libraries
 
-Additionally there are a few crates which I consider vital to development with rust and will justify here once instead of
-repeating the justification in every subproject:
-- [bindgen](https://crates.io/crates/bindgen)
-  <p style="margin: 0">Necessary for useful interaction with underlying C APIs, such as the winapi, Xlib, or OpenGL</p>
-- [itertools](https://crates.io/crates/itertools) 
-  <p style="margin: 0">Provides a lot of helpers that make writing certain code a lot cleaner and easier, although it could be considered to write a selfmade version as part of <a href="https://github.com/Folling/catalyst">catalyst</a></p>
-- [thiserror](https://crates.io/crates/thiserror) 
-  <p style="margin: 0">An incredible library that makes error handling in rust what it should be</p>
-- [strum](https://crates.io/crates/strum)
-  <p style="margin: 0">Wonderful and lightweight helpers to make working with enums a lot easier</p>
+And here is an overview of the libraries that will be used to achieve this:
+#### Linux
+- Xlib (see [adhesive](https://github.com/Folling/adhesive) on an explanation why I'm not using XCB)
+- Wayland
+- GLX
+- FontConfig
+- FreeType
+- HarfBuzz
+- Uuid
 
-All other dependencies will have a written justification in their respective project.
+#### Windows
+- WinApi
+- WGL
+- TBD
+
+#### MacOS
+- Cocoa
+- EGL
+- TBD
+
+Everything else will be written from scratch.
 
 One thing I found bothersome when working with with other libraries were private sections of the API.
-Whilst private APIs can be useful to avoid users accidentally messing up or forming a dependency on a volatile part not having the option to access
-them enforces a certain rigidity that can be hard to work with if you ever need to circumnavigate assumptions of the authors.
-For example, the tooltip delay was not changeable in previous JavaFX versions. The field existed, but you simply couldn't access it.
-For this reason, the APIs within alloy will follow a system similar to "pimpl". Every struct has an "inner" field with all fields that are supposed to be private and an unsafe getter function to access it. This forces people to opt-in with the concious decision and understanding that what they are doing is inherently prone to break if the API changes in the future.
+Whilst private APIs can be useful to avoid users accidentally messing up or forming a dependency on a 
+volatile part not having the option to access them enforces a certain rigidity that can be hard to work with 
+if you ever need to perform tasks outsides of the authors' assumptions.
+For example, the tooltip delay was not changeable in previous JavaFX versions. 
+The field existed, but you simply couldn't access it.
+
+To workaround this design "flaw" the APIs within alloy will follow a system similar to "pimpl":
+
+Every struct has an "inner" field with all fields that are supposed to be private and an 
+unsafe getter function to access it. This forces people to opt-in with the concious decision and understanding 
+that what they are doing is inherently prone to break if the API changes in the future.
 
 # Contributing
-alloy is open source and is supposed to benefit from the inclusion of other people. 
-However I do reserve the rights to deny any feature requests or pull requests but am always open to discussion and having my mind changed. 
-If you're uncertain whether or not a certain pull request would be appreciated and don't want to waste effort without knowing whether it's worth it, feel free to open an issue and ask. 
-All code should be formatted using the same guideline. For this please use rustfmt. In the future a customised rustfmt stylisation might be used.
-File and directory names are are to be formatted using snake_case. Excluded from this rule are files that have a certain convention such as .gitignore, LICENCE.txt and markdown files.
+alloy is open source and is supposed to benefit from the inclusion of different people with different ideas. 
+At least at the beginning however, this project will be managed top-down. I reserve all rights to deny feature requests,
+close tickets, ignore recommendations, the whole authoritarian software owner deal.
+This might change in the feature if the project builds a community that is large enough.
+If you're uncertain whether or not a certain pull request would be appreciated and 
+don't want to waste effort without knowing whether it's worth it, feel free to open an issue and ask.
+
+All code should be formatted using the same guideline. For this please use rustfmt. 
+In the future a customised rustfmt stylisation might be used.
+File and directory names are are to be formatted using `nocase`. 
+Excluded from this rule are files that have a certain convention such as:
+`.gitignore`, `Cargo.toml`, `LICENCE.txt`, or the `README.md`.
 
 # Support
-I have a fulltime job and can only afford so much time for alloy. If you would like to change that in the future consider donating to the project (note: Donating link will follow, alloy isn't worth donating yet). I also appreciate feedback (next to constructive criticism) so feel free to email me at coding@folling.de. 
+I have a fulltime job and can only afford so much time for alloy.
+This will probably also not change in the forseeable future, even if donations could cover my basic living expenses.
+That being said I do take donations, both as a way to say "thanks" and as a way to help build up the project.
+(note: Donating link will follow, alloy isn't worth donating yet). 
+I also appreciate feedback (next to constructive criticism) so feel free to email me at coding@folling.de. 
 
 # Naming
 An alloy is an admixture of metals, or a metal combined with one or more other elements. 

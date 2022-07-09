@@ -1,0 +1,10 @@
+[workspace]
+members = [
+    "adhesive",
+    "catalyst",
+    "granite",
+    "graphene",
+    "graphite",
+    "ink",
+    "neon",
+]
