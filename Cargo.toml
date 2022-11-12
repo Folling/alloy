@@ -2,6 +2,8 @@
 members = [
     "adhesive",
     "catalyst",
+    "catalyst/procmacros",
+    "catalyst/traits",
     "granite",
     "graphene",
     "graphite",

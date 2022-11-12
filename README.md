@@ -46,8 +46,9 @@ The reasons for this decision are plentiful and go beyond the scope of this READ
 Here is an overview of the types of dependencies I will permit, all of these will use the system native C library:
 1. Systems libraries
 2. Security Related Libraries
+3. Rust Core Dependencies (rust-std, proc-macros and all dependencies that comes with it) 
 
-And here is an overview of the libraries that will be used to achieve this:
+And here is an overview of the C libraries that will be used to achieve this:
 #### Linux
 - Xlib (see [adhesive](https://github.com/Folling/adhesive) on an explanation why I'm not using XCB)
 - Wayland
